@@ -74,7 +74,7 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
                   How it Works
                 </NavLink>
 
-                <NavLink className="font-raleway text-gray-500" to="/services">
+                <NavLink className="font-raleway text-gray-500  dark:text-gray-300" to="/services">
                   Services
                 </NavLink>
               </div>

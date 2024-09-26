@@ -61,7 +61,7 @@ export default function Home2() {
             }}
           >
             <ContactForm />
-            <Footer />
+            <Footer darkMode={darkMode} toggleDarkMode={toggleDarkMode}    />
           </div>
         </div>
       </div>
