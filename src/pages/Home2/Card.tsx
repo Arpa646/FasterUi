@@ -44,21 +44,21 @@ function Card() {
   ];
 
   return (
-    <div className="mt-20 lg:w-[1250px] mx-auto">
+    <div className="mt-20 lg:max-w-[1024px] w-full mx-auto px-4 lg:px-0">
       <div
         style={{ width: "354px" }}
-        className="mt-4 font-raleway   lg:ms-11 text-3xl dark:text-white lg:text-[50.33px] font-bold leading-[56.33px] lg:text-start"
+        className="mt-4 font-raleway ms-4 lg:ms-11 text-3xl dark:text-white lg:text-[50.33px] font-bold leading-[56.33px] lg:text-start text-center"
       >
-        <h1>What We do</h1>
+        <h1>What We Do</h1>
       </div>
 
-      <div className="">
-        <div className="grid   lg:mx-0 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-6">
+      <div className="mt-10">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-6">
           {services.map((service, index) => (
             <div
               className={`bg-white dark:bg-dark-gradient 
-                    ${index === 3 ? "lg:h-[580px] h-[280px]   " : "h-[280px]"}
-               ${index === 4 ? "lg:w-[588px] w-[280px]" : "w-[280px]"}
+                ${index === 3 ? "lg:h-[580px] h-[300px]" : "h-[270px]"} 
+                ${index === 4 ? "lg:max-w-[588px] w-full" : "w-full"} 
                 ${index === 4 ? "lg:col-span-2 col-span-1" : "col-span-1"}
                 ${index === 3 ? "lg:row-span-2 row-span-1" : "row-span-1"}
               `}
@@ -68,8 +68,12 @@ function Card() {
                 padding: "16px",
               }}
             >
-              <div className={`${index === 4 ? "flex" : ""}       `}>
-                <div className="flex space-y-3 mt-9 flex-col items-start">
+              <div
+                className={`${
+                  index === 4 ? "lg:flex" : ""
+                } space-y-4 lg:space-y-0`}
+              >
+                <div className="flex space-y-3 mt-4 lg:mt-9 flex-col items-start">
                   <div
                     style={{ backgroundColor: "rgba(245, 248, 255, 1)" }}
                     className="flex rounded-lg items-center w-[44px] h-[44px]"
@@ -80,7 +84,7 @@ function Card() {
                       className="w-5 h-6 mx-auto"
                     />
                   </div>
-                  <h3 className="text-xl dark:text-[#F5F5F5] font-semibold">
+                  <h3 className="text-1xl dark:text-[#F5F5F5] font-semibold">
                     {service.title}
                   </h3>
                   <p className="text-[#898A71] dark:text-[#F5F5F5] mt-2 text-left">
@@ -88,10 +92,15 @@ function Card() {
                   </p>
                 </div>
 
-                {/* Hide the image on small screens */}
+                {/* Hide the image on small screens, display on larger screens */}
                 {service.image && (
                   <img
-                    className="mt-4 hidden sm:block lg:block" // Hidden on small, visible on large screens
+                  // Hidden on small, visible on large screens
+                    className={`pt-8 hidden lg:block w-full lg:w-auto 
+                    
+                     ${index === 4 ? "pt-3" : ""}  // Adding pt-8 for index 3
+                      ${index === 3 ? "pt-11" : ""}  // Adding pt-7 for index 5
+                    `}
                     src={service.image}
                     alt={service.title}
                   />

@@ -5,7 +5,7 @@ function HeroSection() {
     <div>
       <div
         style={{ fontFamily: "" }}
-        className="mt-3 custom-bg  font-raleway text-3xl dark:text-white  flex items-center  mx-auto w-[400px] h-[240px]  lg:text-[50.33px] font-bold lg:leading-[56.33px] text-center"
+        className="mt-3 custom-bg  font-raleway text-3xl dark:text-white  flex items-center  mx-auto md:w-[300px]  lg:w-[400px] h-[240px]  lg:text-[50.33px] font-bold lg:leading-[56.33px] text-center"
       >
         <h1>Awesome UI Dark Template for Webflow Agency</h1>
       </div>

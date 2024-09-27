@@ -63,9 +63,9 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
                   ? "1px solid rgba(128, 128, 128, 0.55)"
                   : "1px solid rgba(255, 255, 255, 1)",
               }}
-              className="hidden sm:block border shadow-lg rounded-lg sm:ml-6"
+              className="hidden  md:block lg:block   border shadow-lg rounded-lg sm:ml-6"
             >
-              <div className="flex space-x-4">
+              <div className="flex lg:space-x-4  ">
                 <NavLink
                   className="font-raleway text-black dark:text-gray-300"
                   to="/"

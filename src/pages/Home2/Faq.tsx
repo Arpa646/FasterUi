@@ -1,6 +1,6 @@
 import { useState } from 'react';
-
-const Faq = () => {
+import round2 from  "./round2.png"
+const Faq = ({darkMode}) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const toggleAccordion = (index:number) => {
     if (openIndex === index) {
@@ -34,9 +34,32 @@ const Faq = () => {
   ];
 
   return (
-    <div className="max-w-4xl  gap-16 mx-auto py-20 px-4 flex  lg:flex-row flex-col items-center">
+
+
+
+    <div   
+    
+     
+    style={{
+      
+      backgroundImage: `url(${darkMode ? round2 : ''})`,  // Dynamically set based on mode
+      backgroundPosition: " -10% ",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "contain",
+
+
+    }}>
+ <div
+    
+   
+    
+    className="max-w-4xl  gap-16 mx-auto py-20 px-4 flex  lg:flex-row flex-col items-center">
       {/* Title */}
-      <h2 className="  text-2xl  lg:text-4xl   lg:w-[300px] font-bold mb-8 text-sart dark:text-white">
+
+
+
+
+      <h2 className="   text-2xl  lg:text-4xl   lg:w-[300px] font-bold mb-8 text-sart dark:text-white">
         Frequently  Asked  Questions
       </h2>
 
@@ -65,6 +88,8 @@ const Faq = () => {
         ))}
       </div>
     </div>
+    </div>
+   
   );
 };
 

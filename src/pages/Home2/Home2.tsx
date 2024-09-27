@@ -45,10 +45,10 @@ export default function Home2() {
           <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           <HeroSection />
           <Card />
-          <Slider />
+          <Slider darkMode={darkMode}  />
 
           <Price />
-          <Faq />
+          <Faq  darkMode={darkMode} />
           <hr />
           {/* Footer Section */}
           <div
