@@ -44,65 +44,58 @@ function Card() {
   ];
 
   return (
-    <div className="mt-20 w-[1250px] mx-auto">
+    <div className="mt-20 lg:w-[1250px] mx-auto">
       <div
         style={{ width: "354px" }}
-        className="mt-4 font-raleway ms-11  dark:text-white  text-[50.33px] font-bold leading-[56.33px] text-start"
+        className="mt-4 font-raleway   lg:ms-11 text-3xl dark:text-white lg:text-[50.33px] font-bold leading-[56.33px] lg:text-start"
       >
         <h1>What We do</h1>
       </div>
 
-      <div>
-        <div
-          style={{ width: "354px" }}
-          className="  font-raleway ms-11 text-[50.33px] font-bold leading-[56.33px] text-start"
-        ></div>
-        <div className="grid  grid-cols-4   p-6 grid-rows-2 gap-6  ">
+      <div className="">
+        <div className="grid   lg:mx-0 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-6">
           {services.map((service, index) => (
             <div
-            className="bg-white dark:bg-dark-gradient"
+              className={`bg-white dark:bg-dark-gradient 
+                    ${index === 3 ? "lg:h-[580px] h-[280px]   " : "h-[280px]"}
+               ${index === 4 ? "lg:w-[588px] w-[280px]" : "w-[280px]"}
+                ${index === 4 ? "lg:col-span-2 col-span-1" : "col-span-1"}
+                ${index === 3 ? "lg:row-span-2 row-span-1" : "row-span-1"}
+              `}
               key={index}
               style={{
-
-
-
-                
-                width: index === 4 ? "588px" : "280px",
-                height: index === 3 ? "580px" : "280px",
-                gridColumn: index === 4 ? "span 2" : "span 1",
-                gridRow: index === 3 ? "span 2" : "span 1",
-               
-                //  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                 borderRadius: "12px",
                 padding: "16px",
               }}
             >
-              <div className={`${index === 4 ? "flex" : ""}`}>
-                <div className="flex space-y-1   mt-9                 flex-col items-start  ">
+              <div className={`${index === 4 ? "flex" : ""}       `}>
+                <div className="flex space-y-3 mt-9 flex-col items-start">
                   <div
-                    style={{ backgroundColor: "rgba(245, 248, 255, 1) " }}
-                    className="      {`${index === 4 ? 2 : 1}`}  flex rounded-lg  items-center w-[44px] h-[44px]    "
+                    style={{ backgroundColor: "rgba(245, 248, 255, 1)" }}
+                    className="flex rounded-lg items-center w-[44px] h-[44px]"
                   >
                     <img
                       src={service.icon}
                       alt={service.title}
-                      className="w-5 h-6 mr-2  dark:text-white mx-auto"
+                      className="w-5 h-6 mx-auto"
                     />
-                  </div >
-                  <h3 className="text-xl  dark:text-[#F5F5F5] font-semibold">{service.title}</h3>
-                  <div>
-                    <p className="text-[#898A71]  dark:text-[#F5F5F5]  mt-2 text-left">
-                      {service.description}
-                    </p>
                   </div>
+                  <h3 className="text-xl dark:text-[#F5F5F5] font-semibold">
+                    {service.title}
+                  </h3>
+                  <p className="text-[#898A71] dark:text-[#F5F5F5] mt-2 text-left">
+                    {service.description}
+                  </p>
                 </div>
 
-                <img
-                  className={` mt-${index === 3 ? 16 : 0}`}
-                  src={service.image}
-                  alt=""
-                  srcset=""
-                />
+                {/* Hide the image on small screens */}
+                {service.image && (
+                  <img
+                    className="mt-4 hidden sm:block lg:block" // Hidden on small, visible on large screens
+                    src={service.image}
+                    alt={service.title}
+                  />
+                )}
               </div>
             </div>
           ))}
@@ -111,7 +104,5 @@ function Card() {
     </div>
   );
 }
-export default Card;
-// Reusable text content component for clarity
 
-// Reusable image component for flexibility
+export default Card;

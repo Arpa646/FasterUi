@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import logo2 from "./logo2.png";
+import { useState } from "react";
+
 function ContactForm() {
   const [formData, setFormData] = useState({
     email: "",
@@ -7,24 +7,20 @@ function ContactForm() {
     message: "",
   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form Data Submitted:", formData);
+    // Your form submission logic here
+    console.log(formData);
   };
 
+  const handleInputChange  = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
   return (
     <div className="    mt-14    flex flex-col items-center justify-center px-4">
       <div className="w-full max-w-lg px-8   rounded-lg">
-        <h1 className="text-4xl  dark:text-white font-bold text-center mb-8 font-raleway">
+        <h1 className="text-4xl dark:text-white  font-bold text-center mb-8 font-raleway">
           Let's Get in Touch
         </h1>
       
@@ -46,7 +42,7 @@ function ContactForm() {
               placeholder="example@email.com"
               value={formData.email}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-[#D6DDED]  bg-transparent  bg-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 border border-[#D6DDED]  bg-transparent  rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
           </div>
@@ -83,17 +79,17 @@ function ContactForm() {
               id="message"
               name="message"
               placeholder="write your message...."
-              rows="5"
+              rows={5}
               value={formData.message}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-[#D6DDED]  bg-transparent  bg-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 border border-[#D6DDED]    bg-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
           </div>
 
           <button
             type="submit"
-            className="w-full py-2 bg-[#4E47FF] text-white text-lg  rounded-lg hover:bg-indigo-700 transition-colors"
+            className="w-full py-2 bg-[#4E47FF] text-white text-lg   rounded-lg hover:bg-indigo-700 transition-colors"
           >
             Get in Touch
           </button>

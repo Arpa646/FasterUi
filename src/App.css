@@ -1,12 +1,21 @@
 #root {
-width: 1440px;
-  max-width: 1440px;
+
+  max-width: 1440px; 
+
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
   background-color: "rgba(245, 248, 255, 1)";
 }
+@media (max-width: 640px) {
+  .custom {
+  
+    background-image: url("@/pages/Home2/logo.png");
+    background-size: 130%;
+    background-position: bottom -93px ; /* Changed from top -9px to bottom */
 
+  }
+}
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -62,15 +71,18 @@ width: 1440px;
   width: 400px;
 } */
 
-
 .bg-lightBanner {
   @apply bg-no-repeat bg-cover;
-  background-image: url('@/pages/Home2/Fotter2.jpg');
+  background-image: url("@/pages/Home2/Fotter2.jpg");
 }
 
 .dark .bg-darkBanner {
   @apply bg-no-repeat bg-cover;
-  background-image: url('@/pages/Home2/darkBanner.jpg');
+  background-image: url("@/pages/Home2/darkBanner.jpg");
 }
+
+
+
+
 
 

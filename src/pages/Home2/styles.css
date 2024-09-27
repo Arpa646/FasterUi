@@ -50,3 +50,20 @@ body {
 .swiper-slide:nth-child(3n) {
   width: 20%;
 }
+
+.custom {
+  background-image: url("@/pages/Home2/logo.png");
+  background-position: center -91px;
+  background-size: 55%;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 640px) {
+  .custom {
+    background-image: url("@/pages/Home2/logo.png");
+    background-size: 130%;
+    background-position: bottom -93px ; /* Changed from top -9px to bottom */
+
+  }
+}
+

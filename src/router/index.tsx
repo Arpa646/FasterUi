@@ -4,7 +4,7 @@ import Home2 from "@/pages/Home2/Home2";
 
 
 
-import NotFound from "@/pages/shared/NotFound";
+
 
 import { createBrowserRouter } from "react-router-dom";
 

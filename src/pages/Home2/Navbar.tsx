@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavLink as RouterNavLink } from 'react-router-dom';
-import { FaBars, FaSun, FaMoon } from 'react-icons/fa'; // Import sun and moon icons
+import React from "react";
+import { NavLink as RouterNavLink } from "react-router-dom";
+import { FaBars, FaSun, FaMoon } from "react-icons/fa"; // Import sun and moon icons
 import Logo3 from "./Logo3.png";
 import Logo4 from "./Logo4.png";
 
@@ -9,6 +9,20 @@ interface NavbarProps {
   toggleDarkMode: () => void;
 }
 
+interface NavLinkProps {
+  to: string;
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties; // Add style prop for inline styles
+  end?: boolean;
+}
+
+interface MobileNavLinkProps {
+  to: string; // Define the 'to' prop type, probably a string representing the URL path
+  end?: boolean; // Optional 'end' prop, can be a boolean
+  children: React.ReactNode; // 'children' prop is of type ReactNode (what's inside the link)
+  className?: string;
+}
 const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -74,7 +88,10 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
                   How it Works
                 </NavLink>
 
-                <NavLink className="font-raleway text-gray-500  dark:text-gray-300" to="/services">
+                <NavLink
+                  className="font-raleway text-gray-500  dark:text-gray-300"
+                  to="/services"
+                >
                   Services
                 </NavLink>
               </div>
@@ -88,9 +105,9 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
                 {darkMode ? <FaSun size={18} /> : <FaMoon size={20} />}
               </button>
 
-              <span className="text-gray-500  "> Sign Up</span>
+              {/* <span className="text-gray-500  "> Sign Up</span> */}
               <NavLink to="/signup">
-                <span className="bg-[#4E47FF] text-white py-2 px-4 rounded-lg transition-all">
+                <span className="bg-[#4E47FF] text-white     lg:py-2 lg:px-4  px-2  py-3 text-sm  rounded-lg transition-all">
                   Sign Up
                 </span>
               </NavLink>
@@ -98,22 +115,64 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
           </div>
         </div>
       </div>
+      <div className="dark:bg-[rgba(77, 71, 71, 0.81)] bg-[rgba(137, 135, 161, 1)] relative z-50 shadow-md">
+        <div
+          className={`${
+            isOpen ? "block" : "hidden"
+          } sm:hidden bg-[rgba(137, 135, 161, 1)] dark:bg-[rgba(0, 0, 0, 0.7)] border-white shadow-lg rounded-lg z-50`}
+          id="mobile-menu"
+        >
+          <div className="px-4 py-4 space-y-2">
+            <NavLink
+              to="/"
+              end
+              style={{ color: darkMode ? "white" : "black" }} // Use an object for inline styles
+            >
+              Home
+            </NavLink>
 
-      <div
-        className={`${
-          isOpen ? "block" : "hidden"
-        } sm:hidden bg-[rgba(137, 135, 161, 1)] border-white shadow-lg z-50`}
-        id="mobile-menu"
-      >
-        <div className="px-2 pt-2 pb-3 space-y-1">
-          <MobileNavLink to="/" end>
-            Home
-          </MobileNavLink>
-          <MobileNavLink to="/facilities">Facilities</MobileNavLink>
-          <MobileNavLink to="/dashboard">Dashboard</MobileNavLink>
-          <MobileNavLink to="/contact">Contact</MobileNavLink>
-          <MobileNavLink to="/aboutus">About Us</MobileNavLink>
-          <MobileNavLink to="/login">Login</MobileNavLink>
+            <NavLink
+               style={{ color: darkMode ? "white" : "black" }}
+              className="block dark:text-white text-gray-800 hover:text-gray-600 dark:hover:text-gray-300"
+              to="/facilities"
+            >
+              Facilities
+            </NavLink>
+            <NavLink
+              className="block dark:text-white text-gray-800 hover:text-gray-600 dark:hover:text-gray-300"
+              to="/dashboard"
+            >
+              Dashboard
+            </NavLink>
+            <NavLink
+              className="block dark:text-white text-gray-800 hover:text-gray-600 dark:hover:text-gray-300"
+              to="/contact"
+            >
+              Contact
+            </NavLink>
+            <NavLink
+              className="block dark:text-white text-gray-800 hover:text-gray-600 dark:hover:text-gray-300"
+              to="/aboutus"
+            >
+              About Us
+            </NavLink>
+            <NavLink
+              className="block dark:text-white text-gray-800 hover:text-gray-600 dark:hover:text-gray-300"
+              to="/login"
+            >
+              Login
+            </NavLink>
+          </div>
+        </div>
+
+        {/* Dark Mode Toggle Button */}
+        <div className="absolute -top-12 right-4">
+          <button
+            onClick={toggleDarkMode}
+            className="p-2 bg-gradient-to-r sm:hidden lg:hidden md:hidden from-gray-800 to-gray-900 dark:bg-gradient-to-r dark:from-gray-700 dark:to-gray-600 text-white rounded-full shadow-lg transition-transform duration-300 hover:scale-110 flex items-center justify-center"
+          >
+            {darkMode ? <FaSun size={18} /> : <FaMoon size={20} />}
+          </button>
         </div>
       </div>
     </nav>
@@ -139,18 +198,14 @@ const NavLink: React.FC<NavLinkProps> = ({
   </RouterNavLink>
 );
 
-const MobileNavLink: React.FC<MobileNavLinkProps> = ({ to, end, children }) => (
-  <RouterNavLink
-    to={to}
-    end={end}
-    className={({ isActive }) =>
-      `text-gray-700 block px-3 py-2 rounded-md text-base font-medium ${
-        isActive ? "bg-gray-300 text-gray-900" : ""
-      }`
-    }
-  >
+const MobileNavLink: React.FC<MobileNavLinkProps> = ({ to, children }) => (
+  <NavLink to={to} className="mobile-nav-link">
     {children}
-  </RouterNavLink>
+  </NavLink>
 );
+
+// Usage
+<MobileNavLink to="/home">Home</MobileNavLink>
+
 
 export default Navbar;

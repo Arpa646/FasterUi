@@ -1,24 +1,19 @@
 import { useState } from 'react';
 
 const Faq = () => {
-  // Accordion state: tracks which item is open
-  const [openIndex, setOpenIndex] = useState(0);
-
-  // Toggle function to open/close accordion items
-  const toggleAccordion = (index) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const toggleAccordion = (index:number) => {
     if (openIndex === index) {
-      setOpenIndex(null); // Close if already open
+      setOpenIndex(null);
     } else {
-      setOpenIndex(index); // Open the clicked item
+      setOpenIndex(index === openIndex ? null : index);
     }
   };
 
-  // FAQ data
   const faqItems = [
     {
       question: 'How can I contact Inkyy Team?',
-      answer:
-        'You can reach us through our contact form on our website or by emailing us at hello@inkyy.com. We typically respond within 24 hours.',
+      answer: 'You can reach us through our contact form on our website or by emailing us at hello@inkyy.com. We typically respond within 24 hours.',
     },
     {
       question: 'What services do you offer?',
@@ -39,33 +34,30 @@ const Faq = () => {
   ];
 
   return (
-    <div className="max-w-4xl flex mx-auto py-20 px-4 justify-center gap-20 ">
+    <div className="max-w-4xl  gap-16 mx-auto py-20 px-4 flex  lg:flex-row flex-col items-center">
       {/* Title */}
-   <div className="flex items-center"> 
-   <h2 className="text-4xl text-start dark:text-white font-bold mb-8">Frequently <br /> Asked  <br />Questions</h2>
+      <h2 className="  text-2xl  lg:text-4xl   lg:w-[300px] font-bold mb-8 text-sart dark:text-white">
+        Frequently  Asked  Questions
+      </h2>
 
-   </div>
       {/* FAQ List */}
-      <div className="space-y-4">
+      <div className="w-full space-y-4">
         {faqItems.map((item, index) => (
-          <div key={index} className=" w-[696px] bg-white dark:bg-dark-gradient rounded-lg">
+          <div key={index} className="bg-white dark:bg-dark-gradient rounded-lg shadow-md">
             {/* Question */}
             <div
-              className="flex justify-between items-center cursor-pointer px-6 py-4"
+              className="flex justify-between items-center cursor-pointer px-4 py-4 sm:px-6 sm:py-6"
               onClick={() => toggleAccordion(index)}
             >
-              <h3 
-              style={{fontSize:"18px"}}
-              
-              className="text-lg font-bold  dark:text-white  ">{item.question}</h3>
-              <span className="text-2xl dark:text-white">
+              <h3 className="text-lg font-bold dark:text-white">{item.question}</h3>
+              <span className="text-xl dark:text-white">
                 {openIndex === index ? '−' : '+'}
               </span>
             </div>
 
             {/* Answer (only visible if this item is open) */}
             {openIndex === index && (
-              <div className="px-6 pb-4 text-[#8987A1] dark:text-white text-start">
+              <div className="px-4 pb-4 text-gray-600 dark:text-white sm:px-6">
                 <p>{item.answer}</p>
               </div>
             )}
@@ -77,5 +69,3 @@ const Faq = () => {
 };
 
 export default Faq;
-
-
